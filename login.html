@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!--
+    Login frontend basic HTML desgin file
+    Version: 0.1
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,15 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - StaticPanel</title>
     <h1>Login</h1>
+    <p id="login_fail" style="color: red;" hidden>Login failed!</p>
 </head>
 <body>
-    <form action="client/login.php" method="post">
+    <form action="client/backend/login.php" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username"><br>
         <label for="password">Password:</label>
         <input type="password" name="password" id="password"><br><br>
         <input type="submit" value="Login">
     </form>
-    
+    <script>
+        const queryStr = window.location.search;
+        const Url = new URLSearchParams(queryStr);
+        const login_fail = Url.get("login_fail");
+        if (login_fail == "1") {
+            document.getElementById("login_fail").removeAttribute("hidden");
+        }
+    </script>
 </body>
 </html>
